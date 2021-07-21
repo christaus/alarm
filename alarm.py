@@ -70,7 +70,7 @@ class Alarm(Tk):
             self.__print_timeout("Let's work for 20 minutes.")
             self.next_timeout = datetime.now() + timedelta(minutes=20)
         elif self.timer_counter == 2:
-            self.__print_timeout("Have your second 5 minutes break.")
+            self.__print_timeout("Have your first 5 minutes break.")
             self.next_timeout = datetime.now() + timedelta(minutes=5)
         elif self.timer_counter == 3:
             self.__print_timeout("Let's work for 20 minutes.")
