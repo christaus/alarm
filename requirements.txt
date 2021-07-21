@@ -1,0 +1,4 @@
+peewee
+Pillow
+tk
+pygame
