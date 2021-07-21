@@ -20,7 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 from datetime import datetime, timedelta
-from time import sleep
 from tkinter import *
 
 
@@ -35,23 +34,46 @@ class Alarm(Tk):
         self.tick_timeout = 500  # Tick minimum timeout in ms
         self.timer_counter = 0  # Timer counter
         self.next_timeout = datetime.now()
+        self.working_color = "green"
+        self.break_color = "blue"
+        self.working = True
 
         # Components placing
         self.lbl = Label(text="Here I am.")
-        self.lbl.pack()
+        self.lbl.pack(fill="x")
         self.lbl_info = Label(text="00:00")
-        self.lbl_info.pack()
-        self.btn = Button(command=self.destroy, text="Fin du monde.")
-        self.btn.pack()
+        self.lbl_info.pack(fill="x")
+        self.btn = Button(command=self.destroy, text="May I, please,\n"
+                                                     "leave this\n"
+                                                     "marvellous software",
+                          relief="flat",
+                          bd=1)
+        self.btn.pack(fill="both")
 
     def interface(self):
         # Window interface
 
         self.title('alarm')
         self.iconphoto(False, PhotoImage(file="images/icon.png"))
+        self.__apply_colors()
         self.after(self.tick_timeout, self.__tick())
 
+    def __apply_colors(self):
+        if self.working:
+            self.lbl.config(bg=self.working_color)
+            self.lbl_info.config(bg=self.working_color)
+
+            self.btn.config(background=self.working_color)
+            self.btn.config(activebackground=self.break_color)
+        else:
+            self.lbl.config(bg=self.break_color)
+            self.lbl_info.config(bg=self.break_color)
+
+            self.btn.config(background=self.break_color)
+            self.btn.config(activebackground=self.working_color)
+
     def __print_timeout(self, message):
+        self.__apply_colors()
         self.lbl_info.config(
             text=(str((self.next_timeout - datetime.now()))[2:-7]))
         self.lbl.config(text=message)
@@ -67,21 +89,27 @@ class Alarm(Tk):
         # Timeout
         self.timer_counter += 1
         if self.timer_counter == 1:
+            self.working = True
             self.__print_timeout("Let's work for 20 minutes.")
             self.next_timeout = datetime.now() + timedelta(minutes=20)
         elif self.timer_counter == 2:
+            self.working = False
             self.__print_timeout("Have your first 5 minutes break.")
             self.next_timeout = datetime.now() + timedelta(minutes=5)
         elif self.timer_counter == 3:
+            self.working = True
             self.__print_timeout("Let's work for 20 minutes.")
             self.next_timeout = datetime.now() + timedelta(minutes=20)
         elif self.timer_counter == 4:
+            self.working = False
             self.__print_timeout("Have your second 5 minutes break.")
             self.next_timeout = datetime.now() + timedelta(minutes=5)
         elif self.timer_counter == 5:
+            self.working = True
             self.__print_timeout("Let's work for 20 minutes.")
             self.next_timeout = datetime.now() + timedelta(minutes=20)
         elif self.timer_counter == 6:
+            self.working = False
             self.__print_timeout("Have a long 15 minutes break now.")
             self.next_timeout = datetime.now() + timedelta(minutes=15)
         elif self.timer_counter == 7:
