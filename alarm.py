@@ -112,7 +112,7 @@ class Alarm(Tk):
         self.__play_sound()
         if self.timer_counter == 1:
             self.working = True
-            self.repeat_bell=19
+            self.repeat_bell = 19
             self.__print_timeout("Let's work for 20 minutes.")
             self.next_timeout = datetime.now() + timedelta(minutes=20)
         elif self.timer_counter == 2:
@@ -138,7 +138,7 @@ class Alarm(Tk):
         elif self.timer_counter == 6:
             self.working = False
             self.repeat_bell = 13  # This is the last one, one ring will be
-                                   # auto added
+            # auto added
             self.__print_timeout("Have a long 15 minutes break now.")
             self.next_timeout = datetime.now() + timedelta(minutes=15)
         elif self.timer_counter == 7:
