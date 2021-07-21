@@ -21,6 +21,7 @@
 # THE SOFTWARE.
 from datetime import datetime, timedelta
 from tkinter import *
+import pygame
 
 
 class Alarm(Tk):
@@ -33,16 +34,27 @@ class Alarm(Tk):
         self.short_break = 5  # How many minutes for a long break
         self.tick_timeout = 500  # Tick minimum timeout in ms
         self.timer_counter = 0  # Timer counter
+        self.repeat_bell = 0  # Number of recall of the ring
         self.next_timeout = datetime.now()
         self.working_color = "green"
         self.break_color = "blue"
         self.working = True
+
+        # Some about multimedia
+        pygame.mixer.init()
+        self.enjoy_the_sound = pygame.mixer.Sound("data/church_bell.ogg")
 
         # Components placing
         self.lbl = Label(text="Here I am.")
         self.lbl.pack(fill="x")
         self.lbl_info = Label(text="00:00")
         self.lbl_info.pack(fill="x")
+
+        self.btn_sound = Button(command=self.enjoy_the_sound.stop,
+                                text="Stop the noise",
+                                relief="flat",
+                                bd=1)
+        self.btn_sound.pack(fill="both")
         self.btn = Button(command=self.destroy, text="May I, please,\n"
                                                      "leave this\n"
                                                      "marvellous software",
@@ -65,12 +77,18 @@ class Alarm(Tk):
 
             self.btn.config(background=self.working_color)
             self.btn.config(activebackground=self.break_color)
+
+            self.btn_sound.config(background=self.working_color)
+            self.btn_sound.config(activebackground=self.break_color)
         else:
             self.lbl.config(bg=self.break_color)
             self.lbl_info.config(bg=self.break_color)
 
             self.btn.config(background=self.break_color)
             self.btn.config(activebackground=self.working_color)
+
+            self.btn_sound.config(background=self.break_color)
+            self.btn_sound.config(activebackground=self.working_color)
 
     def __print_timeout(self, message):
         self.__apply_colors()
@@ -85,35 +103,47 @@ class Alarm(Tk):
             text=str((self.next_timeout - datetime.now()))[2:-7])
         self.after(self.tick_timeout, self.__tick)
 
+    def __play_sound(self):
+        self.enjoy_the_sound.play(loops=self.repeat_bell)
+
     def __timeout(self):
         # Timeout
         self.timer_counter += 1
+        self.__play_sound()
         if self.timer_counter == 1:
             self.working = True
+            self.repeat_bell=19
             self.__print_timeout("Let's work for 20 minutes.")
             self.next_timeout = datetime.now() + timedelta(minutes=20)
         elif self.timer_counter == 2:
             self.working = False
+            self.repeat_bell = 4
             self.__print_timeout("Have your first 5 minutes break.")
             self.next_timeout = datetime.now() + timedelta(minutes=5)
         elif self.timer_counter == 3:
             self.working = True
+            self.repeat_bell = 19
             self.__print_timeout("Let's work for 20 minutes.")
             self.next_timeout = datetime.now() + timedelta(minutes=20)
         elif self.timer_counter == 4:
             self.working = False
+            self.repeat_bell = 4
             self.__print_timeout("Have your second 5 minutes break.")
             self.next_timeout = datetime.now() + timedelta(minutes=5)
         elif self.timer_counter == 5:
             self.working = True
+            self.repeat_bell = 19
             self.__print_timeout("Let's work for 20 minutes.")
             self.next_timeout = datetime.now() + timedelta(minutes=20)
         elif self.timer_counter == 6:
             self.working = False
+            self.repeat_bell = 13  # This is the last one, one ring will be
+                                   # auto added
             self.__print_timeout("Have a long 15 minutes break now.")
             self.next_timeout = datetime.now() + timedelta(minutes=15)
         elif self.timer_counter == 7:
             self.timer_counter = 0
+            self.repeat_bell = 0
             self.next_timeout = datetime.now()
         pass
 
