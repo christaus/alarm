@@ -9,10 +9,9 @@ free. Here is one now.
 ### Generic install:  
 
 Python3 must be installed on your operating system. You can get it from
-[The Python Foundation](https://www.python.org/).
-
+[The Python Foundation](https://www.python.org/).  
 Consider installing and use a virtualenv.  
-To install the needed libs, just use:  
+To install the needed libs, use:  
 `python -m pip -r requirements.txt`
 
 ## Usage:
@@ -21,8 +20,8 @@ This is not a CLI tool.
 
 ## Known issue:
 - On Windows, the color of the Button widgets don't change when over. This is
-probably due to a tkinter internal bug I won't fix for now. Since I use it
-on linux only. You are welcome if you aim to fix it.
+probably due to a tkinter internal bug I won't fix for now. I use it on linux
+only. You are welcome if you aim to fix it.
 
 ## My own use:
 I just installed the needed lib to my system python3 interpreter, I created a
