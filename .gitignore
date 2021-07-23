@@ -1,3 +1,4 @@
+venv/
 .idea/
 .eric6project/
 .ropeproject/
@@ -12,3 +13,4 @@ cur/
 tmp/
 __pycache__/
 *.DS_Store
+/venv/

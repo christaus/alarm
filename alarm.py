@@ -20,8 +20,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+
+
 from datetime import datetime, timedelta
 from tkinter import Tk, Label, Button, PhotoImage
+
 import pygame
 
 
@@ -113,35 +116,35 @@ class Alarm(Tk):
         self.__play_sound()
         if self.timer_counter == 1:
             self.working = True
-            self.repeat_bell = 19
-            self.__print_timeout("Let's work for 20 minutes.")
-            self.next_timeout = datetime.now() + timedelta(minutes=20)
+            self.repeat_bell = self.pomodoro - 1
+            self.__print_timeout(f"Let's work for {self.pomodoro} minutes.")
+            self.next_timeout = datetime.now() + timedelta(minutes=self.pomodoro)
         elif self.timer_counter == 2:
             self.working = False
-            self.repeat_bell = 4
-            self.__print_timeout("Have your first 5 minutes break.")
-            self.next_timeout = datetime.now() + timedelta(minutes=5)
+            self.repeat_bell = self.short_break - 1
+            self.__print_timeout(f"Let's work for {self.short_break} minutes.")
+            self.next_timeout = datetime.now() + timedelta(minutes=self.short_break)
         elif self.timer_counter == 3:
             self.working = True
-            self.repeat_bell = 19
-            self.__print_timeout("Let's work for 20 minutes.")
-            self.next_timeout = datetime.now() + timedelta(minutes=20)
+            self.repeat_bell = self.pomodoro - 1
+            self.__print_timeout(f"Let's work for {self.pomodoro} minutes.")
+            self.next_timeout = datetime.now() + timedelta(minutes=self.pomodoro)
         elif self.timer_counter == 4:
             self.working = False
-            self.repeat_bell = 4
-            self.__print_timeout("Have your second 5 minutes break.")
-            self.next_timeout = datetime.now() + timedelta(minutes=5)
+            self.repeat_bell = self.short_break - 1
+            self.__print_timeout(f"Let's work for {self.short_break} minutes.")
+            self.next_timeout = datetime.now() + timedelta(minutes=self.short_break)
         elif self.timer_counter == 5:
             self.working = True
-            self.repeat_bell = 19
-            self.__print_timeout("Let's work for 20 minutes.")
-            self.next_timeout = datetime.now() + timedelta(minutes=20)
+            self.repeat_bell = self.pomodoro - 1
+            self.__print_timeout(f"Let's work for {self.pomodoro} minutes.")
+            self.next_timeout = datetime.now() + timedelta(minutes=self.pomodoro)
         elif self.timer_counter == 6:
             self.working = False
-            self.repeat_bell = 13  # This is the last one, one ring will be
+            self.repeat_bell = self.long_break - 2  # This is the last one, one ring will be
             # auto added
-            self.__print_timeout("Have a long 15 minutes break now.")
-            self.next_timeout = datetime.now() + timedelta(minutes=15)
+            self.__print_timeout(f"Let's work for {self.long_break} minutes.")
+            self.next_timeout = datetime.now() + timedelta(minutes=self.long_break)
         elif self.timer_counter == 7:
             self.timer_counter = 0
             self.repeat_bell = 0
