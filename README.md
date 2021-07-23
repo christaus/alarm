@@ -17,7 +17,12 @@ To install the needed libs, just use:
 
 ## Usage:
 You can use `alarm.py`. Alarm uses tkinter, a GUI is required.
-This is not a CLI tool.
+This is not a CLI tool.  
+
+## Known issue:
+- On Windows, the color of the Button widgets don't change when over. This is
+probably due to a tkinter internal bug I won't fix for now. Since I use it
+on linux only. You are welcome if you aim to fix it.
 
 ## My own use:
 I just installed the needed lib to my system python3 interpreter, I created a
