@@ -61,7 +61,7 @@ class Alarm(Tk):
         self.btn_sound.pack(fill="both")
         self.btn = Button(command=self.destroy, text="May I, please,\n"
                                                      "leave this\n"
-                                                     "marvellous software",
+                                                     "marvelous software",
                           relief="flat",
                           bd=1)
         self.btn.pack(fill="both")
