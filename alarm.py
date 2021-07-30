@@ -99,13 +99,15 @@ class Alarm(Tk):
 
     def __print_timeout(self, message):
         self.__apply_colors()
-        self.lbl_info.config(text=(str((self.next_timeout - datetime.now()))[2:-7]))
+        self.lbl_info.config(
+            text=(str((self.next_timeout - datetime.now()))[2:-7]))
         self.lbl.config(text=message)
 
     def __tick(self):
         if datetime.now() > self.next_timeout:
             self.__timeout()
-        self.lbl_info.config(text=str((self.next_timeout - datetime.now()))[2:-7])
+        self.lbl_info.config(
+            text=str((self.next_timeout - datetime.now()))[2:-7])
         self.after(self.tick_timeout, self.__tick)
 
     def __play_sound(self):
@@ -119,34 +121,40 @@ class Alarm(Tk):
             self.working = True
             self.repeat_bell = self.pomodoro - 1
             self.__print_timeout(f"Let's work for {self.pomodoro} minutes.")
-            self.next_timeout = datetime.now() + timedelta(minutes=self.pomodoro)
+            self.next_timeout = datetime.now() + timedelta(
+                minutes=self.pomodoro)
         elif self.timer_counter == 2:
             self.working = False
             self.repeat_bell = self.short_break - 1
             self.__print_timeout(f"Let's work for {self.short_break} minutes.")
-            self.next_timeout = datetime.now() + timedelta(minutes=self.short_break)
+            self.next_timeout = datetime.now() + timedelta(
+                minutes=self.short_break)
         elif self.timer_counter == 3:
             self.working = True
             self.repeat_bell = self.pomodoro - 1
             self.__print_timeout(f"Let's work for {self.pomodoro} minutes.")
-            self.next_timeout = datetime.now() + timedelta(minutes=self.pomodoro)
+            self.next_timeout = datetime.now() + timedelta(
+                minutes=self.pomodoro)
         elif self.timer_counter == 4:
             self.working = False
             self.repeat_bell = self.short_break - 1
             self.__print_timeout(f"Let's work for {self.short_break} minutes.")
-            self.next_timeout = datetime.now() + timedelta(minutes=self.short_break)
+            self.next_timeout = datetime.now() + timedelta(
+                minutes=self.short_break)
         elif self.timer_counter == 5:
             self.working = True
             self.repeat_bell = self.pomodoro - 1
             self.__print_timeout(f"Let's work for {self.pomodoro} minutes.")
-            self.next_timeout = datetime.now() + timedelta(minutes=self.pomodoro)
+            self.next_timeout = datetime.now() + timedelta(
+                minutes=self.pomodoro)
         elif self.timer_counter == 6:
             self.working = False
             # This is the last one, one ring will be
             self.repeat_bell = self.long_break - 2
             # auto added
             self.__print_timeout(f"Let's work for {self.long_break} minutes.")
-            self.next_timeout = datetime.now() + timedelta(minutes=self.long_break)
+            self.next_timeout = datetime.now() + timedelta(
+                minutes=self.long_break)
         elif self.timer_counter == 7:
             self.timer_counter = 0
             self.repeat_bell = 0
