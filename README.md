@@ -12,7 +12,7 @@ Python3 must be installed on your operating system. You can get it from
 [The Python Foundation](https://www.python.org/).  
 Consider installing and use a virtualenv.  
 To install the needed libs, use:  
-`python -m pip -r requirements.txt`
+`python -m pip install -r requirements.txt`
 
 ## Usage:
 You can use `alarm.py`. Alarm uses tkinter, a GUI is required.
