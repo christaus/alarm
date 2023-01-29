@@ -8,7 +8,7 @@ free. Here is one now.
 
 ### Generic install:  
 
-Python3 must be installed on your operating system. You can get it from
+**Python 3.9** must be installed on your operating system. You can get it from
 [The Python Foundation](https://www.python.org/).  
 Consider installing and use a virtualenv.  
 To install the needed libs, use:  
